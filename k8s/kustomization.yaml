@@ -8,4 +8,4 @@ resources:
 images:
 - name: goserver
   newName: eduardodeveloper/gitopsfc
-  newTag: 3683ed9b60094b220270dc490036332a66622a5b
+  newTag: 53b2ef4cae30d2059fa0066e557a9dceedc5010c
