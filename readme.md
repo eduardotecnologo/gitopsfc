@@ -7,5 +7,5 @@ $docker push eduardodeveloper/gitops:latest
 $kind create cluster --name=gitopsfc
 $kind delete cluster --name=gitopsfc
 
-## Kustomize
+## Kustomize Automático
 -> https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/

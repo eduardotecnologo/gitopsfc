@@ -21,4 +21,27 @@ jobs:
         repository: ${{ secrets.DOCKERHUB_USERNAME }}/gitopsfc
         tags: ${{github.sha}},latest
 
+    - name: Setup kustomize
+      uses: imranismail/setup-kustomize@v1
+      with:
+        kustomize-version: "3.6.1"
+
+    - name: Update Kubernetes resources
+      env: 
+        DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      run: |
+        cd k8s
+        kustomize edit set image goserver=${DOCKERHUB_USERNAME}/gitopsfc:${{GITHUB_SHA}}
+
+    - name: Commit
+      run: |
+        git config --global user.email "action@github"
+        git config --global user.name "GitHub Action"
+        git Commit -am "Bump docker version"
+        
+    - name: Push
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        repository: eduardotecnologo/gitopsfc
    
